@@ -75,7 +75,7 @@ public class EditorManager : MonoBehaviour
     private void SwitchCamera()
     {
         editorMode = !editorMode;
-
+        Debug.Log("Run!");
         mainCam.enabled = !mainCam.enabled;
         editorCam.enabled = !editorCam.enabled;     
     }
