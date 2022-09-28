@@ -33,16 +33,60 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Look",
+                    "name": "LookKeyboard",
                     "type": "Value",
-                    "id": "6974ea5b-cc55-445d-ac33-b9f1b539e659",
-                    "expectedControlType": "Vector2",
+                    "id": "01c8fe31-f3eb-4187-a5c4-165d892458d7",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 }
             ],
             "bindings": [
+                {
+                    "name": "",
+                    "id": "cc0c57a9-a320-4f8e-b539-4987c9a2afea",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d6c19a66-b60d-4517-ba61-481d53b03f47",
+                    "path": "<XInputController>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4666d488-cb64-4c18-a226-ef73f46b1e16",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "df466da4-df0b-4597-b2d7-41bdd3132713",
+                    "path": "<XInputController>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
                 {
                     "name": "2D Vector",
                     "id": "63c5b3b4-9c52-4abb-9206-ca25bb655484",
@@ -110,70 +154,37 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "cc0c57a9-a320-4f8e-b539-4987c9a2afea",
-                    "path": "<Mouse>/leftButton",
+                    "name": "1D Axis",
+                    "id": "69ca23a1-3a61-4897-bbd8-444343562282",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot",
-                    "isComposite": false,
+                    "action": "LookKeyboard",
+                    "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "d6c19a66-b60d-4517-ba61-481d53b03f47",
-                    "path": "<XInputController>/buttonSouth",
+                    "name": "negative",
+                    "id": "6ea65af9-0822-45e4-a0ca-c67f4c2a5703",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot",
+                    "action": "LookKeyboard",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "4666d488-cb64-4c18-a226-ef73f46b1e16",
-                    "path": "<Keyboard>/space",
+                    "name": "positive",
+                    "id": "08051fbf-81e8-4fac-9b18-682639a13bad",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
+                    "action": "LookKeyboard",
                     "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "df466da4-df0b-4597-b2d7-41bdd3132713",
-                    "path": "<XInputController>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "95524721-d7ca-4399-855c-a40459dec52c",
-                    "path": "<Pointer>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "59029ee3-981a-4b46-a186-12280a4e450b",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 }
             ]
         },
