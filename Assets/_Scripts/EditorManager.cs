@@ -11,65 +11,72 @@ public class EditorManager : MonoBehaviour
     public Camera editorCam;
 
     public bool editorMode = false;
-    bool instatiated = false;
+    bool instantiated = false;
+
+    Vector3 mousePos;
+
+    Subject subject = new Subject();
 
     public GameObject prefab1;
     public GameObject prefab2;
 
     GameObject item;
 
-    private void OnEnable()
-    {
-        inputAction.Player.Enable();
-    }
-
-    private void OnDisable()
-    {
-        inputAction.Player.Disable();
-    }
-
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         if (!instance)
         {
             instance = this;
         }
 
-        inputAction = new PlayerAction();
-
-        mainCam.enabled = true;
-        editorCam.enabled = false;
+        inputAction = PlayerInputController.controller.inputAction;
 
         inputAction.Editor.EnableEditor.performed += cntxt => SwitchCamera();
         inputAction.Editor.AddItem1.performed += cntxt => AddItem(1);
         inputAction.Editor.AddItem2.performed += cntxt => AddItem(2);
 
         inputAction.Editor.DropItem.performed += cntxt => DropItem();
+
+        mainCam.enabled = true;
+        editorCam.enabled = false;
     }
 
     private void AddItem(int itemID)
     {
-        if (!editorMode || instatiated)
+        if (!editorMode || instantiated)
             return;
 
         switch (itemID)
         {
             case 1:
                 item = Instantiate(prefab1);
+                SpikeBall spike1 = new SpikeBall(item, new GreenMat());
+                subject.AddObserver(spike1);
                 break;
             case 2:
                 item = Instantiate(prefab1);
+                SpikeBall spike2 = new SpikeBall(item, new YellowMat());
+                subject.AddObserver(spike2);
                 break;
             default:
                 break;
         }
 
+        subject.Notify();
+        instantiated = true;
+
     }
 
     private void DropItem()
     {
+        if (editorMode && instantiated)
+        {
+            item.GetComponent<Rigidbody>().useGravity = true;
+            item.GetComponent<Collider>().enabled = true;
 
+            instantiated = false;
+        }
     }
 
     private void SwitchCamera()
@@ -92,6 +99,13 @@ public class EditorManager : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1;
+        }
+
+        if (instantiated)
+        {
+            mousePos = Mouse.current.position.ReadValue();
+            mousePos = new Vector3(mousePos.x, mousePos.y, 10.0f);
+            item.transform.position = editorCam.ScreenToWorldPoint(mousePos);
         }
     }
 }

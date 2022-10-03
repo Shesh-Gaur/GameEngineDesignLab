@@ -38,20 +38,11 @@ public class PlayerController : MonoBehaviour
     Vector3 startingPos;
     public Slider healthUI;
 
-    private void OnEnable()
-    {
-        inputAction.Player.Enable();
-    }
-
-    private void OnDisable()
-    {
-        inputAction.Player.Disable();
-    }
-
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-        inputAction = new PlayerAction();
+        //Using controller from player input controller
+        inputAction = PlayerInputController.controller.inputAction;
 
         inputAction.Player.Move.performed += cntxt => move = cntxt.ReadValue<Vector2>();
         inputAction.Player.Move.canceled += cntxt => move = Vector2.zero;
