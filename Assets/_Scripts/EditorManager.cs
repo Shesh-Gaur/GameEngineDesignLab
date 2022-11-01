@@ -11,7 +11,7 @@ public class EditorManager : MonoBehaviour
     public Camera editorCam;
 
     public bool editorMode = false;
-    bool instantiated = false;
+    public bool instantiated = false;
 
     Vector3 mousePos;
 
@@ -20,8 +20,11 @@ public class EditorManager : MonoBehaviour
     public GameObject prefab1;
     public GameObject prefab2;
 
-    GameObject item;
+    public GameObject item;
 
+    ICommand command;
+
+    UIManager ui;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +43,8 @@ public class EditorManager : MonoBehaviour
 
         mainCam.enabled = true;
         editorCam.enabled = false;
+
+        ui = GetComponent<UIManager>();
     }
 
     private void AddItem(int itemID)
@@ -75,6 +80,9 @@ public class EditorManager : MonoBehaviour
             item.GetComponent<Rigidbody>().useGravity = true;
             item.GetComponent<Collider>().enabled = true;
 
+            command = new PlaceItemCommand(item.transform.position, item.transform);
+            CommandInvoker.AddCommand(command);
+
             instantiated = false;
         }
     }
@@ -84,7 +92,9 @@ public class EditorManager : MonoBehaviour
         editorMode = !editorMode;
         Debug.Log("Run!");
         mainCam.enabled = !mainCam.enabled;
-        editorCam.enabled = !editorCam.enabled;     
+        editorCam.enabled = !editorCam.enabled;
+
+        ui.ToggleEditorUI();
     }
 
     // Update is called once per frame
